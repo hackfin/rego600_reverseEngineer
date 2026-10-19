@@ -67,8 +67,9 @@ async function initCpu() {
         str:  pinNameToStruct("P4.4"),
 	}, "B");
 
+
     //console.log(getValues(CD4051_mux_A_inputDefs));
-    adc_sensors_init({
+    let heating_model = adc_sensors_init({
         MUXSEL_A: {port:CD4094_B.outputs, bit:0},
         MUXSEL_B: {port:CD4094_B.outputs, bit:1},
         MUXSEL_C: {port:CD4094_B.outputs, bit:2},
@@ -141,6 +142,7 @@ async function initCpu() {
     log('80C552 instance created (32KB SRAM / 512KB AM29F040 flash on P4-selected external bus).');
     console.log(cpu);
 }
+
 function getCoreRegs() {
   return [
       ['PC', hex(cpu.PC.get(), 4)],
@@ -198,6 +200,12 @@ function getPowerOutputSignals() {
     ['SUM_LARM', readPinLatch(CD4094_B.outputs,4)?'on':'off'],
     ['LARM_LED', readPinLatch(CD4094_B.outputs,6)?'off':'on'],
   ];
+}
+
+function heating_state() {
+	return readPinLatch(CD4094_A.outputs,6)
+		& readPinLatch(CD4094_A.outputs,5) 
+		& readPinLatch(CD4094_A.outputs,7);
 }
 
 function render(stepMode = false) {

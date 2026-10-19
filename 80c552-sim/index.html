@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="components/tabmanager/tabmanager.css">
   <link rel="stylesheet" href="components/tabmanager/tabmanager-menu.css">
 
+  <link rel="stylesheet" href="rego600/sim.css">
   <link rel="stylesheet" href="AppWindows/AppWindow.css">
   <link rel="stylesheet" href="AppWindows/HexEditor.css">
   <link rel="stylesheet" href="AppWindows/GotoLabelForm.css">
@@ -106,6 +107,7 @@
 
   <script src="firmware_profiles.js"></script>
 
+  <script src="rego600/temperature_client.js"></script>
   <script src="rego600/adc_sensors.js"></script>
 
   <script src="simulator.js"></script>
@@ -164,6 +166,12 @@
           <div class="panel" style="max-width:95px;"><h2>Peripheral Regs</h2><table id="peripheralRegs"></table></div>
         </div>
         <div class="col">
+          <div class="legend" id="legend"></div>
+		  <div class="graph-container" id="graphContainer">
+			  <canvas id="graph"></canvas>
+		     <div id="tooltip"></div>
+	      </div>
+
           <div class="panel" style="min-width:440px;"><h2>INTERNAL RAM</h2><div class="memdump" id="iram_dump" style="max-height: 400px;"></div></div>
           <div class="panel xram_view" data-title="SRAM (62256) — 256 bytes window A" data-start_index="10"></div>
           
@@ -172,6 +180,7 @@
           <!--<div class="panel xram_view" data-title="SRAM (62256) — 256 bytes window B" data-start_index="22"></div>-->
           <div class="row"> 
             <div class="col">
+              <div class="panel" style="min-width:130px;"><h2>Heating model server</h2><div id="heating_model"></div></div>
               <div class="panel" style="min-width:130px;"><h2>Sensor Inputs</h2><div id="input_signals"></div></div>
               <div class="panel" style="min-width:120px;"><h2>Power Control Outputs</h2><table id="pwr_output_signals"></table></div>
             </div>
